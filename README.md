@@ -1,4 +1,3 @@
-
 # Multimodal Vision-Language AI: Image Understanding & VQA
 
 ## 📌 Overview
@@ -32,10 +31,57 @@ To run this application locally, ensure you have Python 3.8+ installed on your s
 ```bash
 git clone [https://github.com/AgrimGangwar25/Image-captioning-using-VLM.git](https://github.com/AgrimGangwar25/Image-captioning-using-VLM.git)
 cd Image-captioning-using-VLM
+```
 
 **2. Create and activate a virtual environment**
-For Windows (PowerShell):
 
-```bash
+*For Windows (PowerShell):*
+```powershell
 python -m venv venv
 .\venv\Scripts\activate
+```
+
+*For Linux/Mac:*
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+**3. Install the required dependencies**
+```bash
+pip install torch torchvision transformers Pillow flask werkzeug
+```
+
+## 💻 Usage Instructions
+
+**1. Start the server**
+Ensure your virtual environment is active, then run the Flask application:
+```bash
+python app.py
+```
+*(Note: Upon the first execution, the Hugging Face library will download the pre-trained model weights. This requires roughly 2.5GB of disk space and a stable internet connection).*
+
+**2. Access the Application**
+Open your web browser and navigate to:
+`http://localhost:5000`
+
+**3. Analyze Visual Data**
+* Click **Choose File** and upload any standard image (`.jpg`, `.jpeg`, `.png`).
+* *(Optional)* Enter a specific question about the image in the text input box.
+* Click **Analyze Image**.
+* The server will process the tensors and return both the VQA answer (if a question was asked) and a comprehensive generated caption.
+
+## 📂 Project Structure
+
+```text
+Image-captioning-using-VLM/
+│
+├── app.py                 # Main Flask application and routing logic
+├── vision_model.py        # Core PyTorch/Hugging Face model implementation
+├── templates/             
+│   └── index.html         # Frontend user interface and layout
+├── static/
+│   └── uploads/           # Temporary secure storage for user image inputs
+├── README.md              # Project documentation
+└── .gitignore             # Ignored files for version control
+```
