@@ -32,3 +32,10 @@ To run this application locally, ensure you have Python 3.8+ installed on your s
 ```bash
 git clone [https://github.com/AgrimGangwar25/Image-captioning-using-VLM.git](https://github.com/AgrimGangwar25/Image-captioning-using-VLM.git)
 cd Image-captioning-using-VLM
+
+**2. Create and activate a virtual environment**
+For Windows (PowerShell):
+
+```bash
+python -m venv venv
+.\venv\Scripts\activate
