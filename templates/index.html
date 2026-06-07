@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vision-Language Model: Image Understanding</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; background-color: #f4f4f9; }
+        .container { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        h1 { color: #333; }
+        .upload-form { margin: 20px 0; padding: 20px; border: 2px dashed #ccc; text-align: center; }
+        
+        /* Added styling for the text input */
+        input[type="text"] { width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; font-size: 1em; }
+        
+        input[type="submit"] { background: #007bff; color: white; border: none; padding: 10px 20px; cursor: pointer; border-radius: 4px; width: 100%; font-size: 1em;}
+        input[type="submit"]:hover { background: #0056b3; }
+        
+        .results { margin-top: 30px; text-align: center; }
+        
+        .caption-box { background: #e9ecef; padding: 15px; border-radius: 5px; font-size: 1.1em; margin-top: 15px; text-align: left; }
+        
+        /* Added styling for the answer box */
+        .answer-box { background: #d4edda; color: #155724; padding: 15px; border-radius: 5px; font-size: 1.1em; margin-top: 15px; text-align: left; border-left: 4px solid #28a745; }
+        .question-text { font-style: italic; color: #555; display: block; margin-bottom: 8px; }
+        
+        img { max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>VLM Image Understanding & VQA</h1>
+        <p>Upload an image and optionally ask a question to generate natural language descriptions using a Vision-Language Model.</p>
+        
+        <div class="upload-form">
+            <form method="post" enctype="multipart/form-data">
+                <input type="file" name="file" accept=".png, .jpg, .jpeg" required style="margin-bottom: 15px;">
+                
+                <input type="text" name="question" placeholder="Ask a question about the image (optional)...">
+                
+                <input type="submit" value="Analyze Image">
+            </form>
+        </div>
+
+        {% if caption %}
+        <div class="results">
+            <h3>Uploaded Image:</h3>
+            <img src="{{ image_url }}" alt="Uploaded visual data">
+            
+            {% if answer %}
+            <h3>Visual Question Answering:</h3>
+            <div class="answer-box">
+                <span class="question-text">Q: "{{ question_asked }}"</span>
+                <strong>A:</strong> {{ answer | capitalize }}
+            </div>
+            {% endif %}
+            
+            <h3>Generated Context (Captioning):</h3>
+            <div class="caption-box">
+                {{ caption | capitalize }}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
